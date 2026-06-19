@@ -97,6 +97,12 @@ and troubleshooting.
 | `scripts/gsd-beads-init.sh` | the bootstrap script (git + bd init) |
 | `templates/sync.json.example` | starter sync config |
 
+## Privacy
+
+`gsd-beads` runs entirely on your machine, collects no telemetry, and sends data
+only to the external trackers you explicitly enable (using your own
+credentials). See [`PRIVACY.md`](./PRIVACY.md).
+
 ## License
 
 MIT
