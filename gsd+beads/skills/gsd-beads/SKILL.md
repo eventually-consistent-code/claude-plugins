@@ -88,8 +88,8 @@ create `.planning/`.
 ## Mirror to external tools (optional)
 
 If the repo also has `.gsd-beads/sync.json` with an enabled backend, bd issues
-are mirrored two-way (hub-and-spoke) to GitHub Issues / Jira / Asana / Azure
-Boards — see the **`gsd-beads-sync`** skill. PUSH the matching mirror right
+are mirrored two-way (hub-and-spoke) to GitHub Issues / GitLab / Jira / Asana /
+Azure Boards — see the **`gsd-beads-sync`** skill. PUSH the matching mirror right
 after each bd lifecycle write (`create` / claim→`update` / `close`); reconcile
 external edits back with `/gsd-beads:sync-pull`. Configure via
 `/gsd-beads:sync-config`.

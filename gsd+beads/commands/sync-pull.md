@@ -2,7 +2,7 @@
 description: Reconcile external work-management tools back into bd (pull-on-demand, last-writer-wins)
 ---
 
-Pull edits made in the external tools (GitHub/Jira/Asana/Azure Boards) back into
+Pull edits made in the external tools (GitHub/GitLab/Jira/Asana/Azure Boards) back into
 bd, the hub. Do the following:
 
 1. Confirm `.gsd-beads/sync.json` exists with an enabled backend. If not, tell

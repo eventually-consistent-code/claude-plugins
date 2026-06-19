@@ -11,6 +11,17 @@
       }
     },
     {
+      "type": "gitlab",
+      "enabled": false,
+      "adapter": "gitlab",
+      "config": {
+        "base_url": "https://gitlab.com",
+        "project": "namespace/project",
+        "token_env": "GITLAB_TOKEN",
+        "extra_labels": []
+      }
+    },
+    {
       "type": "jira",
       "enabled": false,
       "adapter": "jira",

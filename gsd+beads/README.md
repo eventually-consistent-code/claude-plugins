@@ -49,7 +49,7 @@ integration convention (see the bundled `gsd-beads` skill).
 
 ## Two-way sync to external tools (optional)
 
-Mirror bd issues to **GitHub Issues, Jira, Asana, and/or Azure Boards** —
+Mirror bd issues to **GitHub Issues, GitLab, Jira, Asana, and/or Azure Boards** —
 **hub-and-spoke, pull-on-demand**. bd is the hub and source of truth; every tool
 syncs to bd, never tool-to-tool.
 
@@ -73,9 +73,9 @@ Trello, …) by dropping in one adapter and a `sync.json` block — no dispatche
 changes. Adapters read API tokens from environment variables named in
 `sync.json`; **no secrets are ever written to disk**.
 
-> GitHub is live-tested (via the `gh` CLI's auth). Jira / Asana / Azure Boards
-> adapters are implemented to each tool's REST spec; supply the relevant API
-> token env var to use them.
+> GitHub is live-tested (via the `gh` CLI's auth). GitLab / Jira / Asana /
+> Azure Boards adapters are implemented to each tool's REST spec; supply the
+> relevant API token env var to use them.
 
 ## Components
 
@@ -87,7 +87,7 @@ changes. Adapters read API tokens from environment variables named in
 | `commands/sync-config.md` | `/gsd-beads:sync-config` — configure backends |
 | `commands/sync-pull.md` | `/gsd-beads:sync-pull` — reconcile tools → bd |
 | `scripts/gbsync.py` · `gbsync.sh` | the push/pull sync dispatcher |
-| `adapters/*.py` | github · jira · asana · azure-boards adapters |
+| `adapters/*.py` | github · gitlab · jira · asana · azure-boards adapters |
 | `adapters/_contract.md` | the adapter interface spec |
 | `hooks/session-start.sh` | "integration active" reminder when both dirs present |
 | `scripts/gsd-beads-init.sh` | the bootstrap script (git + bd init) |

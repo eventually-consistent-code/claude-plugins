@@ -1,7 +1,7 @@
 {
   "name": "gsd-beads",
-  "version": "0.2.0",
-  "description": "Wires the GSD planning workflow (/gsd:*) to the beads issue tracker (bd), and optionally mirrors bd issues two-way (hub-and-spoke) to GitHub Issues, Jira, Asana, and Azure Boards. Activates only in repos that use both GSD (.planning/) and beads (.beads/).",
+  "version": "0.3.0",
+  "description": "Wires the GSD planning workflow (/gsd:*) to the beads issue tracker (bd), and optionally mirrors bd issues two-way (hub-and-spoke) to GitHub Issues, GitLab, Jira, Asana, and Azure Boards. Activates only in repos that use both GSD (.planning/) and beads (.beads/).",
   "author": {
     "name": "BigJiggity",
     "url": "https://github.com/BigJiggity"
@@ -19,6 +19,7 @@
     "issue-tracker",
     "workflow",
     "github",
+    "gitlab",
     "jira",
     "asana",
     "azure-boards",

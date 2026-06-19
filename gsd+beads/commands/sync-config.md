@@ -1,5 +1,5 @@
 ---
-description: Configure two-way bd↔external sync (GitHub/Jira/Asana/Azure Boards) — writes .gsd-beads/sync.json
+description: Configure two-way bd↔external sync (GitHub/GitLab/Jira/Asana/Azure Boards) — writes .gsd-beads/sync.json
 ---
 
 Set up the gsd-beads sync backends for this repo. bd is the hub/source of
@@ -16,10 +16,12 @@ truth; tools sync to bd (hub-and-spoke). Do the following:
    ```
    If it already exists, read it and edit in place (preserve existing values).
 
-3. Ask the user (AskUserQuestion) which backends to enable: **GitHub**, **Jira**,
-   **Asana**, **Azure Boards** (multiSelect). For each chosen backend, collect
-   the required `config` fields and set `"enabled": true`:
+3. Ask the user (AskUserQuestion) which backends to enable: **GitHub**,
+   **GitLab**, **Jira**, **Asana**, **Azure Boards** (multiSelect). For each
+   chosen backend, collect the required `config` fields and set `"enabled": true`:
    - **github**: `repo` (owner/name). Uses the `gh` CLI's existing auth — no token field.
+   - **gitlab**: `project` (numeric id or `namespace/project`), `base_url`
+     (default `https://gitlab.com`; set for self-hosted), and ENV VAR NAME `token_env`.
    - **jira**: `base_url`, `project_key`, `issue_type`, and the ENV VAR NAMES
      `email_env` / `token_env`, plus `transitions.in_progress` / `transitions.closed`.
    - **asana**: `project_gid` and ENV VAR NAME `token_env`.
@@ -30,6 +32,7 @@ truth; tools sync to bd (hub-and-spoke). Do the following:
 4. **Secrets rule:** write only ENV VAR NAMES into `sync.json`, never token
    values. After saving, tell the user exactly which env vars to export
    (e.g. `export JIRA_API_TOKEN=…`) and where to mint each credential:
+   - GitLab token (`api` scope): https://gitlab.com/-/user_settings/personal_access_tokens
    - Jira token: https://id.atlassian.com/manage-profile/security/api-tokens
    - Asana PAT: https://app.asana.com/0/my-apps
    - Azure DevOps PAT (Work Items Read & Write): `https://dev.azure.com/<org>/_usersSettings/tokens`

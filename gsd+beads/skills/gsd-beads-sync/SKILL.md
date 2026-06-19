@@ -1,13 +1,13 @@
 ---
 name: gsd-beads-sync
-description: Use when a repo has .gsd-beads/sync.json with an enabled backend — mirrors bd (beads) issues two-way (hub-and-spoke) to GitHub Issues, Jira, Asana, and/or Azure Boards. bd is the hub/source of truth. PUSH fires on bd lifecycle events; PULL reconciles external edits back to bd on demand. Complements the gsd-beads skill.
+description: Use when a repo has .gsd-beads/sync.json with an enabled backend — mirrors bd (beads) issues two-way (hub-and-spoke) to GitHub Issues, GitLab, Jira, Asana, and/or Azure Boards. bd is the hub/source of truth. PUSH fires on bd lifecycle events; PULL reconciles external edits back to bd on demand. Complements the gsd-beads skill.
 ---
 
 # gsd-beads sync (bd ↔ external work-management tools)
 
 Two-way, **hub-and-spoke** sync. bd (beads) is the hub and source of truth;
 every external tool syncs to bd, never tool-to-tool. Extends the `gsd-beads`
-integration with mirroring to GitHub Issues, Jira, Asana, and Azure Boards.
+integration with mirroring to GitHub Issues, GitLab, Jira, Asana, and Azure Boards.
 
 ## Activation gate
 
