@@ -19,6 +19,21 @@ The gsd-beads integration is active — use the `gsd-beads` skill conventions:
   • use `bd` for ALL task tracking (not TodoWrite / markdown TODOs)
 Run `bd prime` for the full bd command reference and session-close protocol.
 MSG
+
+  # Context-mode integration is opt-in: only emit when the repo has the config.
+  if [ -f "$PROJECT_DIR/.gsd-beads/context.json" ]; then
+    cat <<'MSG'
+[gsd-beads] context-mode integration is enabled (.gsd-beads/context.json).
+Use the `gsd-beads-context` skill conventions when the ctx_* tools are present:
+  • index during execution under source label gb/<bd_id>/<phase>
+  • recall scoped to the active task: ctx_search(source: "<bd_id>")
+  • stream logs/test output via ctx_execute_file (don't persist them)
+  • on phase transition: ctx_stats checkpoint, switch scope to the new phase label
+  • capacity guard: if ctx_stats tokens exceed the configured threshold, advise
+    splitting the active bd issue into sub-tasks (bd create + bd dep add)
+  • scope-by-label only — this layer NEVER calls ctx_purge (manual/user-only)
+MSG
+  fi
 fi
 
 exit 0

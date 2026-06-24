@@ -81,21 +81,54 @@ changes. Adapters read API tokens from environment variables named in
 the reconciliation algorithm, per-backend setup, the adapter contract, security,
 and troubleshooting.
 
+## Intent-aware memory (context-mode integration, optional)
+
+If you also run the [context-mode](https://github.com/mksglu/context-mode)
+plugin, this gives its knowledge base **architectural awareness**. context-mode
+compresses runtime data well but is blind to *what the work is*; this layer ties
+its memory to the **active bd issue** and **GSD phase**:
+
+- **Scope by intent** — index during execution under a `source` label
+  `gb/<bd_id>/<phase>`, then recall scoped to the active task
+  (`ctx_search(source: "<bd_id>")`) instead of the whole session's noise.
+- **Phase-driven scope switch** — on `Execute → Verify`, checkpoint `ctx_stats`
+  and switch the active scope to the new phase's label; the prior phase's noise
+  is simply no longer searched.
+- **Capacity guard** — when `ctx_stats` token usage crosses a configurable
+  threshold, the agent is told to split the active bd issue into sub-tasks
+  (`bd create` + `bd dep add`) — a natural context reset before the window degrades.
+
+**Scope-by-label only** — this layer never deletes the knowledge base.
+context-mode can only purge by whole session or whole project, so any real wipe
+(`ctx_purge`) stays a manual, user-confirmed action.
+
+Setup:
+
+```text
+/gsd-beads:context-config   # opt in, write .gsd-beads/context.json, tune the threshold
+```
+
+The `gsd-beads-context` skill activates once that config exists and the `ctx_*`
+tools are available.
+
 ## Components
 
 | Path | Purpose |
 |---|---|
 | `skills/gsd-beads/SKILL.md` | the GSD↔bd integration convention |
 | `skills/gsd-beads-sync/SKILL.md` | the bd↔external-tools sync convention |
+| `skills/gsd-beads-context/SKILL.md` | the context-mode intent-aware memory convention |
 | `commands/init.md` | `/gsd-beads:init` — bootstrap a repo (git + bd init) |
 | `commands/sync-config.md` | `/gsd-beads:sync-config` — configure backends |
 | `commands/sync-pull.md` | `/gsd-beads:sync-pull` — reconcile tools → bd |
+| `commands/context-config.md` | `/gsd-beads:context-config` — opt into context-mode integration |
 | `scripts/gbsync.py` · `gbsync.sh` | the push/pull sync dispatcher |
 | `adapters/*.py` | github · gitlab · jira · asana · azure-boards adapters |
 | `adapters/_contract.md` | the adapter interface spec |
 | `hooks/session-start.sh` | "integration active" reminder when both dirs present |
 | `scripts/gsd-beads-init.sh` | the bootstrap script (git + bd init) |
 | `templates/sync.json.example` | starter sync config |
+| `templates/context.json.example` | starter context-mode config |
 
 ## Privacy
 
