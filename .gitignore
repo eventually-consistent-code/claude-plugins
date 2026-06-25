@@ -1,6 +1,6 @@
 __pycache__/
 *.pyc
-.gsd-beads/id-map.json
-.gsd-beads/state.json
-.gsd-beads/conflicts.json
+.cairn/id-map.json
+.cairn/state.json
+.cairn/conflicts.json
 .DS_Store
