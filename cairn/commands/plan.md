@@ -18,4 +18,8 @@ Plan phase **$ARGUMENTS** per the `cairn-planning` skill's depth dial.
 4. Reconcile: `plan_drift()` — resolve anything flagged for this phase
    (recreate missing issues via `issue_create` + `plan_issues_set`; question
    closed-unverified ones with the user).
-5. Report the plan summary and next step `/cairn:work <N>`.
+5. Adopt: `plan_unplanned()` — for any unplanned issue that belongs to this
+   phase, add its id via `plan_issues_set` (and set its tracker phase with
+   `issue_update` if the backend supports phases). Ask before adopting;
+   batch the question, not one per issue.
+6. Report the plan summary and next step `/cairn:work <N>`.
