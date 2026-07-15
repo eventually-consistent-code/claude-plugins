@@ -9,7 +9,8 @@ Execute phase **$ARGUMENTS** per the `cairn-planning` skill.
    `/cairn:plan $ARGUMENTS`.
 2. For each issue id, in order: `issue_get(id)` — skip closed ones. If it's
    assigned to someone who is not you (compare against `user.handle` in
-   cairn.json, when set), say so and skip unless the user overrides.
+   cairn.json, only when it's set there — if unset, there are no ownership
+   checks), say so and skip unless the user overrides.
 3. Before starting an issue: `issue_update(id, state: "in_progress")` — and
    when `user.handle` is set in cairn.json, also pass
    `assignee: <handle>` so teammates see who holds it. Then
